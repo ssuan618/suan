@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>love me plan B</title>
+<style>
+:root{
+  --cream:#FFF9F2;
+  --card:#FFFFFF;
+  --line:#F5E7D9;
+  --pink-deep:#F08FA5;
+  --brown:#8A6455;
+  --brown-2:#A98C7C;
+  --mint-deep:#6FC19A;
+  --red-soft:#F08080;
+  --shadow:0 10px 26px rgba(200,160,130,.13);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--brown);
+  background:
+    radial-gradient(circle at 10% 6%, #FFEBD8 0%, transparent 40%),
+    radial-gradient(circle at 90% 3%, #FFE1E8 0%, transparent 38%),
+    radial-gradient(circle at 50% 100%, #FFF4E2 0%, transparent 45%),
+    var(--cream);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:26px 16px 90px}
+
+/* ---------- 头部 ---------- */
+.hero{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}
+.hero-left{flex:1;min-width:260px;display:flex;flex-direction:column;justify-content:center}
+.hero-left h1{
+  margin:0 0 10px;font-size:30px;letter-spacing:1px;font-weight:800;
+  color:#8A6455;text-shadow:0 2px 0 #fff;
+}
+.hero-left h1 span{color:var(--pink-deep)}
+.dateline{
+  display:inline-block;font-size:14px;color:#A98C7C;background:#fff;
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:10px;align-self:flex-start;
+  box-shadow:0 4px 12px rgba(220,180,150,.12);
+}
+.quote{font-size:13.5px;line-height:1.8;color:#A98C7C;max-width:520px}
+.quote b{color:#8A6455;font-weight:600}
+
+.hero-right{width:224px;flex:none;display:flex;flex-direction:column;gap:12px}
+
+.sport-card{
+  width:100%;background:linear-gradient(160deg,#FFE7DC,#FFD9E3);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;justify-content:center;border:1px solid #FFEFF2;
+}
+.sport-label{font-size:12px;color:#B3838F;letter-spacing:2px;margin-bottom:8px}
+.sport-value{font-size:26px;font-weight:800;color:#E4788F;line-height:1.2}
+.sport-sub{font-size:12px;color:#BF97A0;margin-top:8px;line-height:1.5;word-break:break-all}
+
+.mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini-card{
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 6px;
+  text-align:center;box-shadow:0 6px 16px rgba(220,180,150,.10);
+}
+.mini-card b{display:block;font-size:23px;font-weight:800;color:#E4788F;line-height:1.15}
+.mini-card span{font-size:11.5px;color:#B0A094;letter-spacing:.5px}
+
+/* ---------- 导航 ---------- */
+.tabs{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 24px}
+.tab{
+  background:#fff;border:1.5px solid var(--line);border-radius:18px;
+  padding:16px 28px;font-size:16.5px;font-weight:600;color:#B0A094;
+  cursor:pointer;transition:.18s;font-family:inherit;
+  display:inline-flex;align-items:center;gap:9px;
+  box-shadow:0 6px 16px rgba(220,180,150,.10);
+  letter-spacing:.3px;
+}
+.tab:hover{
+  color:var(--pink-deep);border-color:#FFD9E2;transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(240,143,165,.18);
+}
+.tab.active{
+  background:#FFF6F9;border-color:#F8A8BC;color:#E4788F;font-weight:700;
+  box-shadow:0 10px 24px rgba(240,143,165,.22);
+}
+.tab .ico{font-size:19px;line-height:1}
+
+/* ---------- 卡片 ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px;
+  box-shadow:var(--shadow)}
+.card h2{font-size:15px;margin:0 0 14px;display:flex;align-items:center;gap:8px;color:#8A6455}
+.card h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--pink-deep);display:inline-block}
+
+/* ---------- 控件 ---------- */
+button{font-family:inherit}
+.icon-btn{border:none;background:#FDF2E9;width:30px;height:30px;border-radius:10px;cursor:pointer;font-size:14px;
+  color:#B08A6E;display:inline-flex;align-items:center;justify-content:center;transition:.15s;flex:none}
+.icon-btn:hover{background:#FBE6D6}
+.icon-btn.danger{background:transparent;color:#D9C6B6}
+.icon-btn.danger:hover{color:var(--red-soft);background:#FDEFF0}
+.btn{border:none;background:linear-gradient(135deg,#FFC0CE,#F49BAE);color:#fff;padding:10px 18px;border-radius:12px;
+  cursor:pointer;font-size:14px;font-weight:600;transition:.15s;box-shadow:0 6px 14px rgba(240,143,165,.28)}
+.btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.btn.ghost{background:#FDF2E9;color:#B08A6E;box-shadow:none}
+.btn.ghost:hover{background:#FBE6D6}
+.btn.small{padding:8px 14px;font-size:13px}
+input,textarea{font-family:inherit;font-size:14px;border:1px solid var(--line);border-radius:12px;padding:10px 13px;
+  outline:none;background:#FFFDFA;color:var(--brown);transition:.15s}
+input:focus,textarea:focus{border-color:#FFC4D2;box-shadow:0 0 0 3px #FDEDF1}
+input::placeholder,textarea::placeholder{color:#CBB9AB}
+textarea{width:100%;min-height:110px;resize:vertical;line-height:1.85;margin-top:10px}
+.add-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.add-row input:not([type=number]){flex:1;min-width:160px}
+.hint{font-size:12px;color:#C3B0A2;margin-top:9px}
+
+/* ---------- 日历 ---------- */
+.cal-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.cal-title{font-weight:700;font-size:16px;min-width:108px;color:#8A6455}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:7px}
+.weekdays div{text-align:center;font-size:12px;color:#C3B0A2;padding:4px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}
+.cell{min-height:96px;border:1px solid var(--line);border-radius:14px;padding:7px;background:#FFFCF8;
+  cursor:pointer;transition:.12s;overflow:hidden}
+.cell:hover{border-color:#FFD9E2;background:#FFF8F3;transform:translateY(-1px)}
+.cell.empty{border:none;background:transparent;cursor:default}
+.cell.empty:hover{transform:none}
+.cell.today{border-color:#F8A8BC;box-shadow:0 0 0 3px #FDEDF1}
+.cell.selected{background:#FFF2F5;border-color:#F8A8BC}
+.cell-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#C3B0A2}
+.dnum{font-weight:700;color:#A98C7C}
+.cell.today .dnum{color:var(--pink-deep)}
+.count{font-size:10px;background:#FDF2E9;border-radius:999px;padding:1px 6px;color:#B08A6E}
+.cell-items{margin-top:3px}
+.mini{font-size:11px;line-height:1.6;color:#A98C7C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini.done{color:var(--mint-deep);text-decoration:line-through;opacity:.95}
+.mini.undone{color:var(--red-soft)}
+.mini em{font-style:normal;color:#CBB9AB;font-size:10px}
+.mini.more{color:#D2C1B4}
+
+/* ---------- 详情列表 ---------- */
+.detail-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px;flex-wrap:wrap}
+.detail-head h3{margin:0;font-size:15px;color:#8A6455}
+.row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:14px;border:1px solid var(--line);
+  margin-bottom:8px;background:#FFFDFA;transition:.15s}
+.row.done{background:#F4FBF7;border-color:#DCF1E5}
+.row.undone{background:#FFF7F7;border-color:#FFE0E0}
+.stat-btn{width:27px;height:27px;border-radius:50%;border:1.5px solid #EDDFD2;background:#fff;cursor:pointer;
+  font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;color:#CBB9AB;flex:none;transition:.15s}
+.stat-btn:hover{transform:scale(1.08)}
+.stat-btn.done{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff}
+.stat-btn.undone{background:var(--red-soft);border-color:var(--red-soft);color:#fff}
+.row-text{flex:1;font-size:14px;word-break:break-word}
+.row.done .row-text{color:#9DB5A8;text-decoration:line-through}
+.dur{font-size:12px;color:#B08A6E;background:#FDF2E9;border-radius:9px;padding:3px 10px;flex:none;cursor:pointer;
+  transition:.15s;border:1px dashed transparent}
+.dur:hover{background:#FBE6D6}
+.dur.empty{color:#CBB9AB;border-color:#E8D8C9;background:transparent}
+.dur-input{width:86px;padding:4px 8px;font-size:12px;border-radius:9px;text-align:center}
+.empty-tip{color:#B0A094;font-size:13.5px;padding:20px 0;text-align:center;line-height:1.9}
+.empty-tip .big{font-size:20px;display:block;margin-bottom:6px}
+
+/* ---------- 书单 ---------- */
+.book-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.book-title{background:none;border:none;font-size:16px;font-weight:700;cursor:pointer;padding:0;color:#8A6455;
+  text-align:left;transition:.15s}
+.book-title:hover{color:var(--pink-deep)}
+.tag{font-size:12px;color:#B08A6E;background:#FDF2E9;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tag.green{background:#E9F8F0;color:#4CA97E}
+.spacer{flex:1}
+.check{width:31px;height:31px;border-radius:50%;border:1.5px solid #EDDFD2;background:#fff;cursor:pointer;
+  font-size:14px;color:#CBB9AB;flex:none;transition:.15s}
+.check.on{background:var(--mint-deep);border-color:var(--mint-deep);color:#fff}
+.book-body{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+.note{display:flex;align-items:flex-start;gap:8px;padding:9px 12px;border-radius:12px;background:#FFFCF8;
+  margin-bottom:7px;font-size:14px;line-height:1.8;border:1px solid #FBF2E9}
+.note.fav{background:#FFFBEF;border-color:#FBEECB}
+.note-text{flex:1;word-break:break-word}
+.star{border:none;background:none;cursor:pointer;font-size:17px;color:#E0D2C4;line-height:1;padding:0 2px;flex:none}
+.note.fav .star{color:#F5C451}
+
+/* ---------- 总结 ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px;margin-bottom:14px}
+.stat{background:#FFFCF8;border:1px solid #FBF2E9;border-radius:16px;padding:14px 8px;text-align:center}
+.stat b{display:block;font-size:20px;color:var(--pink-deep);font-weight:800}
+.stat span{font-size:12px;color:#B0A094}
+.section-label{font-size:13px;color:#B0A094;margin:14px 0 9px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+.chip{background:#FDF2E9;color:#B08A6E;border-radius:999px;padding:5px 12px;font-size:13px}
+.chip b{font-weight:700;opacity:.8}
+.ai-box{background:linear-gradient(135deg,#FFF6EC,#FFF0F4);border:1px dashed #FBD7E0;border-radius:16px;
+  padding:16px;font-size:14px;line-height:1.95;color:#8A6455;margin-top:14px;white-space:pre-wrap}
+.bars{display:flex;gap:7px;align-items:flex-end;height:150px;margin:16px 0 8px;padding:0 2px}
+.bar-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end}
+.bar-wrap{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.bar{width:72%;max-width:24px;border-radius:9px 9px 4px 4px;background:linear-gradient(180deg,#FFDAC8,#F8BFA4);
+  min-height:4px;transition:.3s}
+.bar.max{background:linear-gradient(180deg,#FFC2D1,#F08FA5)}
+.bar.min{background:linear-gradient(180deg,#EFE6DC,#D8C9BA)}
+.bar-item span{font-size:10px;color:#C3B0A2}
+.bar-item em{font-size:10px;font-style:normal;color:#B0A094;font-weight:600}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#B0A094;margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#8A6455;color:#fff;padding:11px 20px;border-radius:999px;font-size:13px;opacity:0;
+  transition:.25s;z-index:99;pointer-events:none;box-shadow:0 10px 24px rgba(138,100,85,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:700px){
+  .hero-right{width:100%}
+  .hero-left h1{font-size:25px}
+  .tab{padding:13px 20px;font-size:15px;border-radius:16px}
+  .tab .ico{font-size:17px}
+  .cell{min-height:60px;padding:4px;border-radius:10px}
+  .cell-items{display:none}
+  .wrap{padding:18px 10px 80px}
+  .card{padding:14px}
+  .bars{height:120px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ 头部 ============ -->
+  <header class="hero">
+    <div class="hero-left">
+      <h1>love me <span>plan B</span></h1>
+      <div class="dateline" id="dateline"></div>
+      <div class="quote" id="quote"></div>
+    </div>
+    <div class="hero-right">
+      <div class="sport-card">
+        <div class="sport-label">今 日 运 动</div>
+        <div class="sport-value" id="today-sport">无</div>
+        <div class="sport-sub" id="today-sport-sub">动一动，会更好</div>
+      </div>
+      <div class="mini-cards">
+        <div class="mini-card">
+          <b id="today-todo-count">0</b>
+          <span>今日待办</span>
+        </div>
+        <div class="mini-card">
+          <b id="reading-count">0</b>
+          <span>在读书籍</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ 导航 ============ -->
+  <div class="tabs">
+    <button class="tab active" data-tab="todo"><span class="ico">🍓</span>To do list</button>
+    <button class="tab" data-tab="books"><span class="ico">🌸</span>书单</button>
+    <button class="tab" data-tab="workout"><span class="ico">🍃</span>体态锻炼</button>
+    <button class="tab" data-tab="summary"><span class="ico">🍮</span>总结</button>
+  </div>
+
+  <!-- ============ 板块一：To do list ============ -->
+  <section id="panel-todo">
+    <div class="card">
+      <div class="cal-head">
+        <button class="icon-btn" id="todo-prev">‹</button>
+        <div class="cal-title" id="todo-title"></div>
+        <button class="icon-btn" id="todo-next">›</button>
+        <button class="btn ghost small" id="todo-today">回到今天</button>
+        <div class="spacer"></div>
+        <span class="hint" style="margin:0">点击日期查看 / 编辑当天计划</span>
+      </div>
+      <div class="weekdays">
+        <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+      </div>
+      <div class="cal-grid" id="todo-cal"></div>
+    </div>
+    <div class="card" id="todo-detail"></div>
+  </section>
+
+  <!-- ============ 板块二：书单 ============ -->
+  <section id="panel-books" style="display:none">
+    <div class="card">
+      <h2><span class="dot"></span>添加一本书</h2>
+      <div class="add-row">
+        <input id="book-title" placeholder="书名，例如《被讨厌的勇气》">
+        <input id="book-start" type="date" title="开始阅读时间">
+        <button class="btn" id="book-add">加入书单</button>
+      </div>
+      <div class="hint">读完时点右侧的圆圈，会自动记下结束的那一天 🍬</div>
+    </div>
+    <div id="book-list"></div>
+  </section>
+
+  <!-- ============ 板块三：体态锻炼 ============ -->
+  <section id="panel-workout" style="display:none">
+    <div class="card">
+      <div class="cal-head">
+        <button class="icon-btn" id="workout-prev">‹</button>
+        <div class="cal-title" id="workout-title"></div>
+        <button class="icon-btn" id="workout-next">›</button>
+        <button class="btn ghost small" id="workout-today">回到今天</button>
+        <div class="spacer"></div>
+        <span class="hint" style="margin:0">完成之后，再点一下时长设置分钟数</span>
+      </div>
+      <div class="weekdays">
+        <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+      </div>
+      <div class="cal-grid" id="workout-cal"></div>
+    </div>
+    <div class="card" id="workout-detail"></div>
+  </section>
+
+  <!-- ============ 板块四：总结 ============ -->
+  <section id="panel-summary" style="display:none">
+
+    <div class="card">
+      <h2><span class="dot"></span>昨日回顾</h2>
+      <div id="yesterday-box"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>日总结</h2>
+      <div class="add-row">
+        <input type="date" id="daily-date">
+        <button class="btn small" id="daily-save">保存日总结</button>
+      </div>
+      <div id="daily-data" style="margin-top:14px"></div>
+      <textarea id="daily-text" placeholder="写下今天（或某一天）的收获、心情和小小的调整…"></textarea>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>月总结 · AI 分析</h2>
+      <div class="add-row">
+        <input type="month" id="month-pick">
+        <button class="btn" id="month-analyze">🤖 分析这个月</button>
+        <button class="btn ghost small" id="month-save">保存月总结</button>
+      </div>
+      <div id="month-result" style="margin-top:14px"></div>
+      <textarea id="month-text" placeholder="AI 生成后可以在这里修改，再点保存…"></textarea>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>年总结 · 全年数据与寄语</h2>
+      <div class="add-row">
+        <input type="number" id="year-pick" min="2000" max="2100" style="width:120px">
+        <button class="btn" id="year-analyze">🤖 生成年度报告</button>
+        <button class="btn ghost small" id="year-save">保存年总结</button>
+      </div>
+      <div id="year-result" style="margin-top:14px"></div>
+      <textarea id="year-text" placeholder="年度寄语会显示在这里…"></textarea>
+    </div>
+
+  </section>
+</div>
+
+<script>
+/* =========================================================
+   基础工具
+   ========================================================= */
+const pad2 = n => String(n).padStart(2, '0');
+const ymd = d => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const todayKey = () => ymd(new Date());
+const daysInMonth = (y, m) => new Date(y, m + 1, 0).getDate();
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-3);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const parseYmd = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+
+function toast(msg) {
+  const d = document.createElement('div');
+  d.className = 'toast';
+  d.textContent = msg;
+  document.body.appendChild(d);
+  requestAnimationFrame(() => d.classList.add('show'));
+  setTimeout(() => { d.classList.remove('show'); setTimeout(() => d.remove(), 300); }, 1900);
+}
+
+/* =========================================================
+   数据层
+   ========================================================= */
+const STORE_KEY = 'love-me-plan-b-v1';
+const defaultDB = () => ({ todos: {}, workouts: {}, books: [], daily: {}, monthly: {}, yearly: {} });
+let DB = (() => {
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORE_KEY));
+    return raw ? Object.assign(defaultDB(), raw) : defaultDB();
+  } catch (e) { return defaultDB(); }
+})();
+const save = () => localStorage.setItem(STORE_KEY, JSON.stringify(DB));
+
+/* =========================================================
+   全局状态
+   ========================================================= */
+const NOW = new Date();
+const state = {
+  todo:    { y: NOW.getFullYear(), m: NOW.getMonth(), sel: todayKey() },
+  workout: { y: NOW.getFullYear(), m: NOW.getMonth(), sel: todayKey() },
+  bookOpen: {}
+};
+const storeOf = kind => kind === 'todo' ? DB.todos : DB.workouts;
+
+/* =========================================================
+   头部：日期 & 名言 & 今日统计
+   ========================================================= */
+const QUOTES = [
+  ['生活不是等待风暴过去，而是学会在雨中起舞。', '维维安·格林'],
+  ['你不能左右天气，但可以改变心情。', '佚名'],
+  ['每一个不曾起舞的日子，都是对生命的辜负。', '尼采'],
+  ['成功的秘诀，在于坚持最后一分钟。', '佚名'],
+  ['不要因为走得太远，而忘记为什么出发。', '纪伯伦'],
+  ['你若盛开，蝴蝶自来；你若精彩，天自安排。', '佚名'],
+  ['把每一天都当成礼物，就不会有遗憾。', '佚名'],
+  ['伟大的事业不是靠力气，而是靠坚持。', '塞缪尔·约翰逊'],
+  ['慢慢来，比较快。', '佚名'],
+  ['今天应做的事没有做，明天再早也是耽误了。', '裴斯泰洛齐'],
+  ['所有的努力都不会完全白费，你付出多少时间和精力，都是在对未来的积累。', '佚名'],
+  ['你只管努力，剩下的交给时间。', '佚名'],
+  ['心之所向，素履以往；生如逆旅，一苇以航。', '佚名'],
+  ['不积跬步，无以至千里。', '荀子'],
+  ['人生没有白走的路，每一步都算数。', '佚名'],
+  ['热爱可抵岁月漫长。', '佚名']
+];
+
+function formatDateCN(d) {
+  const w = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];
+  return `${d.getFullYear()}年${pad2(d.getMonth() + 1)}月${pad2(d.getDate())}日，${w}`;
+}
+
+function renderHeader() {
+  document.getElementById('dateline').textContent = formatDateCN(new Date());
+  const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+  document.getElementById('quote').innerHTML = `「${esc(q[0])}」 —— <b>${esc(q[1])}</b>`;
+}
+
+/* 今日运动 + 今日待办 + 在读书籍 */
+function updateHeroStats() {
+  const key = todayKey();
+
+  /* 今日运动 */
+  const list = DB.workouts[key] || [];
+  const done = list.filter(t => t.status === 'done' && Number(t.duration) > 0);
+  const total = done.reduce((s, t) => s + Number(t.duration), 0);
+
+  const valEl = document.getElementById('today-sport');
+  const subEl = document.getElementById('today-sport-sub');
+
+  if (total > 0) {
+    valEl.textContent = total + ' 分钟';
+    subEl.textContent = done.map(t => `${t.text} ${t.duration}′`).join(' · ');
+  } else {
+    valEl.textContent = '无';
+    const pending = list.filter(t => t.status !== 'done').length;
+    const noDur = list.filter(t => t.status === 'done' && !Number(t.duration)).length;
+    if (pending) subEl.textContent = `还有 ${pending} 项待完成`;
+    else if (noDur) subEl.textContent = '完成啦，记得设置时长';
+    else subEl.textContent = '动一动，会更好';
+  }
+
+  /* 今日待办 */
+  const todos = DB.todos[key] || [];
+  document.getElementById('today-todo-count').textContent = todos.length;
+
+  /* 在读书籍 */
+  document.getElementById('reading-count').textContent = DB.books.filter(b => !b.endDate).length;
+}
+
+/* =========================================================
+   日历渲染（To do list & 体态锻炼 共用）
+   ========================================================= */
+function renderCalendar(kind) {
+  const st = state[kind];
+  const store = storeOf(kind);
+  const grid = document.getElementById(kind + '-cal');
+  document.getElementById(kind + '-title').textContent = `${st.y} 年 ${st.m + 1} 月`;
+
+  const first = new Date(st.y, st.m, 1);
+  const startPad = (first.getDay() + 6) % 7;
+  const dim = daysInMonth(st.y, st.m);
+  const cells = Math.ceil((startPad + dim) / 7) * 7;
+  const tk = todayKey();
+
+  let html = '';
+  for (let i = 0; i < cells; i++) {
+    const dayNum = i - startPad + 1;
+    if (dayNum < 1 || dayNum > dim) { html += '<div class="cell empty"></div>'; continue; }
+
+    const key = `${st.y}-${pad2(st.m + 1)}-${pad2(dayNum)}`;
+    const items = store[key] || [];
+    const doneN = items.filter(x => x.status === 'done').length;
+
+    const cls = ['cell'];
+    if (key === tk) cls.push('today');
+    if (key === st.sel) cls.push('selected');
+
+    let inner = `<div class="cell-top"><span class="dnum">${dayNum}</span>`;
+    if (items.length) inner += `<span class="count">${doneN}/${items.length}</span>`;
+    inner += `</div><div class="cell-items">`;
+
+    items.slice(0, 2).forEach(it => {
+      const icon = it.status === 'done' ? '✓' : it.status === 'undone' ? '✗' : '○';
+      const durTxt = (kind === 'workout' && it.duration) ? ` <em>${it.duration}′</em>` : '';
+      inner += `<div class="mini ${it.status}">${icon} ${esc(it.text)}${durTxt}</div>`;
+    });
+    if (items.length > 2) inner += `<div class="mini more">+${items.length - 2} 项…</div>`;
+    inner += `</div>`;
+
+    html += `<div class="${cls.join(' ')}" data-date="${key}">${inner}</div>`;
+  }
+
+  grid.innerHTML = html;
+  grid.querySelectorAll('.cell[data-date]').forEach(cell => {
+    cell.addEventListener('click', () => {
+      state[kind].sel = cell.dataset.date;
+      renderCalendar(kind);
+      renderDetail(kind);
+    });
+  });
+}
+
+/* 当日详情 */
+function renderDetail(kind) {
+  const key = state[kind].sel;
+  const store = storeOf(kind);
+  const items = store[key] || [];
+  const box = document.getElementById(kind + '-detail');
+  const label = kind === 'todo' ? '待办事项' : '锻炼项目';
+  const doneN = items.filter(i => i.status === 'done').length;
+
+  let html = `<div class="detail-head">
+      <h3>${key} · ${label}</h3>
+      <span class="hint" style="margin:0">点圆圈切换：○ 待办 → ✓ 完成 → ✗ 未完成</span>
+    </div>`;
+
+  if (!items.length) {
+    if (kind === 'todo') {
+      html += `<div class="empty-tip"><span class="big">☀️</span>今天天气很好，要做点什么吗</div>`;
+    } else {
+      html += `<div class="empty-tip"><span class="big">🌱</span>做一分钟 会有一分钟效果</div>`;
+    }
+  } else {
+    html += items.map(it => {
+      const icon = it.status === 'done' ? '✓' : it.status === 'undone' ? '✗' : '○';
+      const durHTML = kind === 'workout'
+        ? `<span class="dur ${it.duration ? '' : 'empty'}" data-act="dur" data-kind="workout"
+             data-date="${key}" data-id="${it.id}" title="点击设置时长">
+             ${it.duration ? it.duration + ' 分钟' : '设置时长'}</span>`
+        : '';
+      return `<div class="row ${it.status}">
+        <button class="stat-btn ${it.status}" data-act="toggle" data-id="${it.id}" title="点击切换状态">${icon}</button>
+        <span class="row-text">${esc(it.text)}</span>
+        ${durHTML}
+        <button class="icon-btn" data-act="edit" data-id="${it.id}" title="编辑名称">✎</button>
+        <button class="icon-btn danger" data-act="del" data-id="${it.id}" title="删除">🗑</button>
+      </div>`;
+    }).join('');
+  }
+
+  html += `<div class="add-row">
+      <input id="${kind}-new" placeholder="输入${label}名称，回车快速添加">
+      <button class="btn" data-act="add">添加</button>
+    </div>
+    <div class="hint">${kind === 'todo'
+      ? '上面写一句，就有一条新的安排 ✨'
+      : '先写下想做的动作，完成后再点一下时长，记下花了几分钟 ⏱'}</div>`;
+
+  box.innerHTML = html;
+}
+
+/* 详情区交互 */
+function handleDetailClick(kind, e) {
+  /* 时长编辑 */
+  const durEl = e.target.closest('[data-act="dur"]');
+  if (durEl) { startDurEdit(durEl); return; }
+
+  const btn = e.target.closest('button[data-act]');
+  if (!btn) return;
+  const act = btn.dataset.act;
+  const store = storeOf(kind);
+  const key = state[kind].sel;
+  const list = store[key] || (store[key] = []);
+
+  if (act === 'toggle') {
+    const it = list.find(x => x.id === btn.dataset.id);
+    if (!it) return;
+    it.status = it.status === 'pending' ? 'done' : it.status === 'done' ? 'undone' : 'pending';
+  } else if (act === 'del') {
+    store[key] = list.filter(x => x.id !== btn.dataset.id);
+    if (!store[key].length) delete store[key];
+  } else if (act === 'edit') {
+    const it = list.find(x => x.id === btn.dataset.id);
+    if (!it) return;
+    const v = prompt('修改名称：', it.text);
+    if (v === null) return;
+    if (v.trim()) it.text = v.trim();
+  } else if (act === 'add') {
+    const inp = document.getElementById(kind + '-new');
+    const text = (inp.value || '').trim();
+    if (!text) { inp.focus(); return; }
+    list.push({ id: uid(), text, status: 'pending', duration: 0 });
+    store[key] = list;
+  } else return;
+
+  save();
+  renderCalendar(kind);
+  renderDetail(kind);
+  updateHeroStats();
+}
+
+/* 内联设置时长 */
+function startDurEdit(el) {
+  const kind = el.dataset.kind;
+  const date = el.dataset.date;
+  const id = el.dataset.id;
+  const cur = (el.textContent.match(/\d+/) || [''])[0];
+
+  const inp = document.createElement('input');
+  inp.type = 'number';
+  inp.min = '0';
+  inp.className = 'dur-input';
+  inp.value = cur;
+  inp.placeholder = '分钟';
+  el.replaceWith(inp);
+  inp.focus();
+  inp.select();
+
+  let done = false;
+  const commit = () => {
+    if (done) return;
+    done = true;
+    const v = Math.max(0, Number(inp.value) || 0);
+    const item = (storeOf(kind)[date] || []).find(x => x.id === id);
+    if (item) item.duration = v;
+    save();
+    renderCalendar(kind);
+    renderDetail(kind);
+    updateHeroStats();
+  };
+  inp.addEventListener('blur', commit);
+  inp.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter') { ev.preventDefault(); inp.blur(); }
+    if (ev.key === 'Escape') { done = true; renderDetail(kind); }
+  });
+}
+
+function shiftMonth(kind, delta) {
+  const st = state[kind];
+  let m = st.m + delta, y = st.y;
+  if (m < 0) { m = 11; y--; }
+  if (m > 11) { m = 0; y++; }
+  st.y = y; st.m = m;
+  const sel = parseYmd(st.sel);
+  if (sel.getFullYear() !== y || sel.getMonth() !== m) st.sel = `${y}-${pad2(m + 1)}-01`;
+  renderCalendar(kind);
+  renderDetail(kind);
+}
+
+function goToday(kind) {
+  const d = new Date();
+  state[kind].y = d.getFullYear();
+  state[kind].m = d.getMonth();
+  state[kind].sel = todayKey();
+  renderCalendar(kind);
+  renderDetail(kind);
+}
+
+/* =========================================================
+   板块二：书单
+   ========================================================= */
+function renderBooks() {
+  const box = document.getElementById('book-list');
+  if (!DB.books.length) {
+    box.innerHTML = `<div class="card empty-tip"><span class="big">📖</span>书单还是空的，添加第一本书吧</div>`;
+    return;
+  }
+
+  box.innerHTML = DB.books.map(b => {
+    const open = !!state.bookOpen[b.id];
+    const notes = b.notes || [];
+    const favN = notes.filter(n => n.fav).length;
+
+    return `<div class="card">
+      <div class="book-head">
+        <button class="book-title" data-act="toggle-open" data-id="${b.id}" title="点击展开 / 收起摘抄">
+          ${b.endDate ? '✅' : '📖'} ${esc(b.title)}
+        </button>
+        <span class="tag">开始：${b.startDate || '未设置'}</span>
+        ${b.endDate ? `<span class="tag green">读完：${b.endDate}</span>` : `<span class="tag">阅读中</span>`}
+        ${favN ? `<span class="tag">★ ${favN} 条收藏</span>` : ''}
+        <div class="spacer"></div>
+        <button class="check ${b.endDate ? 'on' : ''}" data-act="finish" data-id="${b.id}"
+          title="${b.endDate ? '点击取消读完' : '点击标记读完'}">${b.endDate ? '✓' : '○'}</button>
+        <button class="icon-btn danger" data-act="del-book" data-id="${b.id}" title="删除书籍">🗑</button>
+      </div>
+      ${open ? `<div class="book-body">
+        <div class="notes">
+          ${notes.length
+            ? notes.map(n => `<div class="note ${n.fav ? 'fav' : ''}">
+                <span class="note-text">${esc(n.text)}</span>
+                <button class="star" data-act="fav" data-id="${b.id}" data-nid="${n.id}"
+                  title="${n.fav ? '取消收藏' : '标记收藏'}">${n.fav ? '★' : '☆'}</button>
+                <button class="icon-btn danger" data-act="del-note" data-id="${b.id}" data-nid="${n.id}" title="删除">🗑</button>
+              </div>`).join('')
+            : `<div class="empty-tip" style="padding:12px 0">还没有摘抄，添加喜欢的句子吧 ✍️</div>`}
+        </div>
+        <div class="add-row">
+          <input id="note-${b.id}" placeholder="摘抄一句话…（回车添加）">
+          <button class="btn small" data-act="add-note" data-id="${b.id}">添加摘抄</button>
+        </div>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function bindBooks() {
+  const box = document.getElementById('book-list');
+
+  box.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-act]');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const book = DB.books.find(b => b.id === id);
+    if (!book) return;
+    const act = btn.dataset.act;
+
+    if (act === 'toggle-open') {
+      state.bookOpen[id] = !state.bookOpen[id];
+      renderBooks(); return;
+    }
+    if (act === 'finish') {
+      if (book.endDate) book.endDate = '';
+      else { book.endDate = todayKey(); toast('🎉 恭喜读完《' + book.title + '》'); }
+    } else if (act === 'del-book') {
+      if (!confirm(`确定删除《${book.title}》及其全部摘抄吗？`)) return;
+      DB.books = DB.books.filter(b => b.id !== id);
+      delete state.bookOpen[id];
+    } else if (act === 'add-note') {
+      const inp = document.getElementById('note-' + id);
+      const t = (inp.value || '').trim();
+      if (!t) { inp.focus(); return; }
+      book.notes = book.notes || [];
+      book.notes.push({ id: uid(), text: t, fav: false, date: todayKey() });
+    } else if (act === 'fav') {
+      const n = (book.notes || []).find(n => n.id === btn.dataset.nid);
+      if (n) n.fav = !n.fav;
+    } else if (act === 'del-note') {
+      book.notes = (book.notes || []).filter(n => n.id !== btn.dataset.nid);
+    } else return;
+
+    save();
+    renderBooks();
+    updateHeroStats();
+  });
+
+  box.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.id && e.target.id.startsWith('note-')) {
+      e.preventDefault();
+      const id = e.target.id.slice(5);
+      const btn = box.querySelector(`button[data-act="add-note"][data-id="${id}"]`);
+      if (btn) btn.click();
+    }
+  });
+}
+
+/* =========================================================
+   板块四：统计与总结
+   ========================================================= */
+
+/** 在读书籍进度 */
+function readingProgressHTML(key) {
+  const reading = DB.books.filter(b => !b.endDate);
+  if (!reading.length) return '';
+  const refDay = parseYmd(key);
+
+  const chips = reading.map(b => {
+    let days = 0;
+    if (b.startDate) {
+      days = Math.max(0, Math.round((refDay - parseYmd(b.startDate)) / 86400000) + 1);
+    }
+    const txt = days > 0 ? `已读 ${days} 天` : '刚刚开始';
+    return `<span class="chip">📖 ${esc(b.title)} · ${txt}</span>`;
+  }).join('');
+
+  return `<div class="section-label" style="margin:14px 0 8px">在读书籍 · 阅读进度</div>
+          <div class="chips">${chips}</div>`;
+}
+
+/** 单日统计 */
+function dayStatsHTML(key) {
+  const ts = DB.todos[key] || [];
+  const ws = DB.workouts[key] || [];
+  const tDone = ts.filter(t => t.status === 'done').length;
+  const wDone = ws.filter(t => t.status === 'done').length;
+  const mins = ws.filter(t => t.status === 'done').reduce((s, t) => s + (Number(t.duration) || 0), 0);
+  const books = DB.books.filter(b => b.endDate === key);
+
+  return `<div class="stats">
+      <div class="stat"><b>${tDone}/${ts.length}</b><span>待办完成</span></div>
+      <div class="stat"><b>${wDone}/${ws.length}</b><span>锻炼完成</span></div>
+      <div class="stat"><b>${mins}</b><span>锻炼分钟</span></div>
+      <div class="stat"><b>${books.length}</b><span>读完书籍</span></div>
+    </div>
+    ${books.length
+      ? `<div class="chips">${books.map(b => `<span class="chip">📖 ${esc(b.title)} · 已读完</span>`).join('')}</div>`
+      : readingProgressHTML(key)}`;
+}
+
+/** 月度统计 */
+function analyzeMonth(y, m) {
+  const ym = `${y}-${pad2(m + 1)}`;
+  const dim = daysInMonth(y, m);
+  let todoTotal = 0, todoDone = 0, woTotal = 0, woDone = 0, woMin = 0, activeDays = 0;
+  const bookList = [];
+
+  for (let d = 1; d <= dim; d++) {
+    const key = `${ym}-${pad2(d)}`;
+    let dayActive = false;
+
+    (DB.todos[key] || []).forEach(t => {
+      todoTotal++;
+      if (t.status === 'done') { todoDone++; dayActive = true; }
+    });
+
+    (DB.workouts[key] || []).forEach(t => {
+      woTotal++;
+      if (t.status === 'done') {
+        woDone++;
+        woMin += Number(t.duration) || 0;
+        dayActive = true;
+      }
+    });
+
+    if (dayActive) activeDays++;
+  }
+
+  DB.books.forEach(b => { if (b.endDate && b.endDate.startsWith(ym)) bookList.push(b); });
+
+  const rate = todoTotal ? todoDone / todoTotal : 0;
+  return { y, m, ym, todoTotal, todoDone, todoUndone: todoTotal - todoDone,
+           woTotal, woDone, woMin, activeDays, books: bookList, rate };
+}
+
+/** 月总结文案模板 */
+function buildMonthText(r) {
+  const pct = Math.round(r.rate * 100);
+  const lines = [];
+  lines.push(`🍰 ${r.y} 年 ${r.m + 1} 月 · 小结`);
+  lines.push('');
+  lines.push(`【这个月的数字】`);
+  lines.push(`· 待办：完成 ${r.todoDone} 项 / 共 ${r.todoTotal} 项，完成率 ${pct}%`);
+  lines.push(`· 真正动手做了点什么的日子：${r.activeDays} 天`);
+  lines.push(`· 体态锻炼：完成 ${r.woDone} 次，累计 ${r.woMin} 分钟`);
+  if (r.books.length) {
+    lines.push(`· 读完的书：《${r.books.map(b => b.title).join('》《')}》`);
+  } else {
+    lines.push(`· 读完的书：这个月还没有读完的书，慢慢来`);
+  }
+  lines.push('');
+
+  lines.push(`【想对你说】`);
+  if (r.todoTotal === 0 && r.woDone === 0 && r.books.length === 0) {
+    lines.push('这个月好像还很安静。空白不是失败，只是还没开始。');
+    lines.push('从明天的一件小事开始——哪怕只完成一件，也是新的起点。');
+  } else {
+    if (r.rate >= 0.8) {
+      lines.push('这个月的执行力非常漂亮，说到的事情基本都做到了，请把这份底气带进下个月。');
+    } else if (r.rate >= 0.5) {
+      lines.push('稳扎稳打的一个月，虽然有些计划还在路上，但你已经走在正确的方向上。');
+    } else if (r.todoTotal > 0) {
+      lines.push('这个月的计划有些没跟上，别急着责怪自己。目标可以再小一点、再具体一点。');
+    }
+    if (r.woMin >= 300) {
+      lines.push(`累计 ${r.woMin} 分钟的身体投入，是肉眼看不见、但身体记得住的礼物。`);
+    } else if (r.woMin > 0) {
+      lines.push(`这个月有 ${r.woMin} 分钟花在了自己身上，坚持比强度更珍贵。`);
+    } else {
+      lines.push('身体也需要被照顾，下个月试着动一动，哪怕只有一分钟。');
+    }
+  }
+  lines.push('');
+  lines.push(`【下个月的小目标】`);
+  lines.push(`· 让完成率再往上一点点（这个月是 ${pct}%）`);
+  lines.push(`· 每周至少完成 ${r.woDone >= 4 ? 3 : 2} 次体态锻炼`);
+  lines.push('· 留一点空白给自己，休息也是计划的一部分');
+
+  return lines.join('\n');
+}
+
+/** 月度结果展示 */
+function monthResultHTML(r) {
+  const pct = Math.round(r.rate * 100);
+  return `<div class="stats">
+      <div class="stat"><b>${r.todoDone}/${r.todoTotal}</b><span>待办完成</span></div>
+      <div class="stat"><b>${pct}%</b><span>完成率</span></div>
+      <div class="stat"><b>${r.woDone}/${r.woTotal}</b><span>锻炼完成</span></div>
+      <div class="stat"><b>${r.woMin}</b><span>锻炼分钟</span></div>
+      <div class="stat"><b>${r.activeDays}</b><span>有行动的天数</span></div>
+      <div class="stat"><b>${r.books.length}</b><span>读完书籍</span></div>
+    </div>
+    <div class="ai-box">${esc(buildMonthText(r))}</div>`;
+}
+
+/** 年度统计 */
+function analyzeYear(y) {
+  const months = [];
+  const typeMap = new Map();
+  let todoTotal = 0, todoDone = 0, woCount = 0, woMin = 0, activeDays = 0;
+
+  for (let m = 0; m < 12; m++) {
+    let mMin = 0, mCnt = 0, mTodo = 0, mDone = 0;
+    const dim = daysInMonth(y, m);
+
+    for (let d = 1; d <= dim; d++) {
+      const key = `${y}-${pad2(m + 1)}-${pad2(d)}`;
+      let dayActive = false;
+
+      (DB.todos[key] || []).forEach(t => {
+        mTodo++;
+        if (t.status === 'done') { mDone++; dayActive = true; }
+      });
+
+      (DB.workouts[key] || []).forEach(t => {
+        if (t.status === 'done') {
+          const dm = Number(t.duration) || 0;
+          mMin += dm; mCnt++;
+          woMin += dm; woCount++;
+          dayActive = true;
+          typeMap.set(t.text, (typeMap.get(t.text) || 0) + 1);
+        }
+      });
+
+      if (dayActive) activeDays++;
+    }
+
+    todoTotal += mTodo; todoDone += mDone;
+    months.push({ m: m + 1, min: mMin, cnt: mCnt, todo: mTodo, done: mDone });
+  }
+
+  const books = DB.books.filter(b => b.endDate && b.endDate.startsWith(String(y)));
+  const activeMonths = months.filter(x => x.cnt > 0 || x.done > 0).length;
+  const sportMonths = months.filter(x => x.min > 0);
+
+  const maxMonth = sportMonths.length ? sportMonths.reduce((a, b) => b.min > a.min ? b : a) : null;
+  const minMonth = sportMonths.length ? sportMonths.reduce((a, b) => b.min < a.min ? b : a) : null;
+
+  const types = [...typeMap.entries()].map(([name, c]) => ({ name, c })).sort((a, b) => b.c - a.c);
+  const mostType = types.length ? types[0] : null;
+  const leastType = types.length ? types[types.length - 1] : null;
+
+  const rate = todoTotal ? todoDone / todoTotal : 0;
+
+  return { y, months, todoTotal, todoDone, woCount, woMin, activeDays, activeMonths,
+           books, maxMonth, minMonth, mostType, leastType, types, rate };
+}
+
+/** 年度寄语文案 */
+function buildYearText(r) {
+  const lines = [];
+  lines.push(`🎀 ${r.y} 年 · 年度报告`);
+  lines.push('');
+  lines.push('【全年概览】');
+  lines.push(`· 全年完成待办 ${r.todoDone} / ${r.todoTotal} 项，完成率 ${Math.round(r.rate * 100)}%`);
+  lines.push(`· 有实际行动的天数：${r.activeDays} 天，覆盖 ${r.activeMonths} 个月`);
+  lines.push(`· 体态锻炼：${r.woCount} 次，累计 ${r.woMin} 分钟`);
+  if (r.books.length) lines.push(`· 读完 ${r.books.length} 本书：《${r.books.map(b => b.title).join('》《')}》`);
+  lines.push('');
+
+  lines.push('【锻炼数据对比】');
+  if (r.maxMonth) {
+    lines.push(`· 锻炼时间最长的月份：${r.maxMonth.m} 月，共 ${r.maxMonth.min} 分钟`);
+    lines.push(`· 锻炼时间最短的月份：${r.minMonth.m} 月，共 ${r.minMonth.min} 分钟`);
+  } else {
+    lines.push('· 今年还没有记录锻炼时长，明年可以试着动起来');
+  }
+  if (r.mostType) {
+    lines.push(`· 做得最多的运动：${r.mostType.name}（${r.mostType.c} 次）`);
+    lines.push(`· 做得最少的运动：${r.leastType.name}（${r.leastType.c} 次）`);
+  }
+  lines.push('');
+
+  lines.push('【写给你】');
+  if (r.todoTotal === 0 && r.woCount === 0 && r.books.length === 0) {
+    lines.push('这一年，记录还是一片柔软的白。没关系，人生不是每一年都必须闪闪发光。');
+    lines.push('如果愿意，就从今天写下一行吧，明年此刻你会感谢此刻的自己。');
+  } else {
+    if (r.activeDays >= 200) {
+      lines.push('这一年，你把「坚持」两个字活成了日常。绝大多数人一生都做不到的事，你已经在做了。');
+    } else if (r.activeDays >= 100) {
+      lines.push('一年里有一百多天你在认真推进，这已经超过了大多数人。剩下的日子，允许自己休息，也别忘了继续。');
+    } else if (r.activeDays >= 30) {
+      lines.push('一个月以上的实际投入，说明你不是只会喊口号的人。下一年，试着让这个数字翻倍。');
+    } else {
+      lines.push('行动的日子不算多，但每一次完成都是真实的。别急着追赶，先从「每周完成一件小事」开始。');
+    }
+    if (r.woMin > 0) {
+      lines.push(`你在身体上投入了 ${r.woMin} 分钟，这些时间不会消失，它们变成了更挺拔的你和更稳的心跳。`);
+    }
+    if (r.books.length) {
+      lines.push(`读完的那 ${r.books.length} 本书，会在某个你想不到的时刻替你说话。`);
+    }
+    lines.push('记住：你不是在完成计划，你是在一点一点，把自己塑造成想成为的那个人。');
+    lines.push('love me plan B —— 计划可以重来，爱自己不用。');
+  }
+
+  return lines.join('\n');
+}
+
+/** 年度结果展示（含柱形图） */
+function yearResultHTML(r) {
+  const maxVal = Math.max(1, ...r.months.map(x => x.min));
+  const bars = r.months.map(x => {
+    const cls = (r.maxMonth && x.m === r.maxMonth.m && x.min > 0) ? 'max'
+              : (r.minMonth && x.m === r.minMonth.m && x.min > 0) ? 'min' : '';
+    return `<div class="bar-item">
+      <div class="bar-wrap">
+        <div class="bar ${cls}" style="height:${Math.round(x.min / maxVal * 100)}%" title="${x.m}月 ${x.min} 分钟"></div>
+      </div>
+      <span>${x.m}月</span>
+      <em>${x.min}</em>
+    </div>`;
+  }).join('');
+
+  let cmp = '';
+  if (r.maxMonth) {
+    cmp = `<div class="legend">
+      <span><i style="background:#F08FA5"></i>最长：${r.maxMonth.m} 月 · ${r.maxMonth.min} 分钟</span>
+      <span><i style="background:#D8C9BA"></i>最短：${r.minMonth.m} 月 · ${r.minMonth.min} 分钟</span>
+    </div>`;
+  }
+
+  let typeHTML = '';
+  if (r.mostType) {
+    typeHTML = `<div class="chips" style="margin-top:10px">
+      <span class="chip">🏆 最多：${esc(r.mostType.name)} <b>${r.mostType.c} 次</b></span>
+      <span class="chip">🌱 最少：${esc(r.leastType.name)} <b>${r.leastType.c} 次</b></span>
+    </div>`;
+  }
+
+  return `<div class="stats">
+      <div class="stat"><b>${r.todoDone}/${r.todoTotal}</b><span>全年待办完成</span></div>
+      <div class="stat"><b>${Math.round(r.rate * 100)}%</b><span>全年完成率</span></div>
+      <div class="stat"><b>${r.activeDays}</b><span>有行动的天数</span></div>
+      <div class="stat"><b>${r.activeMonths}</b><span>有产出的月份</span></div>
+      <div class="stat"><b>${r.woCount}</b><span>锻炼次数</span></div>
+      <div class="stat"><b>${r.woMin}</b><span>锻炼分钟</span></div>
+      <div class="stat"><b>${r.books.length}</b><span>读完书籍</span></div>
+    </div>
+
+    <div class="section-label">每月锻炼时间（分钟）</div>
+    <div class="bars">${bars}</div>
+    ${cmp}
+    ${typeHTML}
+
+    <div class="ai-box">${esc(buildYearText(r))}</div>`;
+}
+
+/* ---------- 总结面板 ---------- */
+function renderSummary() {
+  const yd = new Date();
+  yd.setDate(yd.getDate() - 1);
+  const yKey = ymd(yd);
+
+  document.getElementById('yesterday-box').innerHTML =
+    dayStatsHTML(yKey) + `<div class="hint">统计日期：${yKey}（昨日）</div>`;
+
+  const dailyDate = document.getElementById('daily-date');
+  if (!dailyDate.value) dailyDate.value = yKey;
+  syncDaily();
+
+  const mp = document.getElementById('month-pick');
+  if (!mp.value) mp.value = `${NOW.getFullYear()}-${pad2(NOW.getMonth() + 1)}`;
+
+  const yp = document.getElementById('year-pick');
+  if (!yp.value) yp.value = NOW.getFullYear();
+}
+
+function syncDaily() {
+  const key = document.getElementById('daily-date').value || todayKey();
+  document.getElementById('daily-data').innerHTML = dayStatsHTML(key);
+  document.getElementById('daily-text').value = DB.daily[key] || '';
+}
+
+/* =========================================================
+   初始化
+   ========================================================= */
+function init() {
+  renderHeader();
+  updateHeroStats();
+
+  /* 导航 */
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const name = tab.dataset.tab;
+      ['todo', 'books', 'workout', 'summary'].forEach(n => {
+        document.getElementById('panel-' + n).style.display = (n === name) ? '' : 'none';
+      });
+      if (name === 'books') renderBooks();
+      if (name === 'summary') renderSummary();
+      if (name === 'workout') updateHeroStats();
+    });
+  });
+
+  /* 日历板块 */
+  ['todo', 'workout'].forEach(kind => {
+    document.getElementById(kind + '-prev').addEventListener('click', () => shiftMonth(kind, -1));
+    document.getElementById(kind + '-next').addEventListener('click', () => shiftMonth(kind, 1));
+    document.getElementById(kind + '-today').addEventListener('click', () => goToday(kind));
+
+    const box = document.getElementById(kind + '-detail');
+    box.addEventListener('click', e => handleDetailClick(kind, e));
+    box.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const t = e.target;
+      if (t.id === kind + '-new') {
+        e.preventDefault();
+        const btn = box.querySelector('button[data-act="add"]');
+        if (btn) btn.click();
+      }
+    });
+
+    renderCalendar(kind);
+    renderDetail(kind);
+  });
+
+  /* 书单 */
+  document.getElementById('book-start').value = todayKey();
+  document.getElementById('book-add').addEventListener('click', () => {
+    const titleEl = document.getElementById('book-title');
+    const startEl = document.getElementById('book-start');
+    const title = (titleEl.value || '').trim();
+    if (!title) { titleEl.focus(); return; }
+    DB.books.unshift({ id: uid(), title, startDate: startEl.value || todayKey(), endDate: '', notes: [] });
+    titleEl.value = '';
+    save();
+    renderBooks();
+    updateHeroStats();
+    toast('已加入书单 📚');
+  });
+  document.getElementById('book-title').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('book-add').click();
+  });
+  bindBooks();
+  renderBooks();
+
+  /* 总结 */
+  document.getElementById('daily-date').addEventListener('change', syncDaily);
+
+  document.getElementById('daily-save').addEventListener('click', () => {
+    const key = document.getElementById('daily-date').value || todayKey();
+    DB.daily[key] = document.getElementById('daily-text').value;
+    save();
+    toast('日总结已保存 ✅');
+  });
+
+  document.getElementById('month-pick').addEventListener('change', () => {
+    const v = document.getElementById('month-pick').value;
+    document.getElementById('month-result').innerHTML = '';
+    document.getElementById('month-text').value = DB.monthly[v] || '';
+  });
+
+  document.getElementById('month-analyze').addEventListener('click', () => {
+    const v = document.getElementById('month-pick').value;
+    if (!v) { toast('请先选择月份'); return; }
+    const [y, m] = v.split('-').map(Number);
+    const res = analyzeMonth(y, m - 1);
+    document.getElementById('month-result').innerHTML = monthResultHTML(res);
+    document.getElementById('month-text').value = DB.monthly[v] || buildMonthText(res);
+  });
+
+  document.getElementById('month-save').addEventListener('click', () => {
+    const v = document.getElementById('month-pick').value;
+    if (!v) { toast('请先选择月份'); return; }
+    DB.monthly[v] = document.getElementById('month-text').value;
+    save();
+    toast('月总结已保存 ✅');
+  });
+
+  document.getElementById('year-pick').addEventListener('change', () => {
+    const v = document.getElementById('year-pick').value;
+    document.getElementById('year-result').innerHTML = '';
+    document.getElementById('year-text').value = DB.yearly[v] || '';
+  });
+
+  document.getElementById('year-analyze').addEventListener('click', () => {
+    const y = Number(document.getElementById('year-pick').value);
+    if (!y) { toast('请先填写年份'); return; }
+    const res = analyzeYear(y);
+    document.getElementById('year-result').innerHTML = yearResultHTML(res);
+    document.getElementById('year-text').value = DB.yearly[y] || buildYearText(res);
+  });
+
+  document.getElementById('year-save').addEventListener('click', () => {
+    const y = document.getElementById('year-pick').value;
+    if (!y) { toast('请先填写年份'); return; }
+    DB.yearly[y] = document.getElementById('year-text').value;
+    save();
+    toast('年总结已保存 ✅');
+  });
+
+  renderSummary();
+}
+
+init();
+</script>
+</body>
+</html>
